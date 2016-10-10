@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Chrome Tabs</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="tabs.css">
+  <link rel="stylesheet" href="tabs-dark.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+  <script src="https://wzrd.in/standalone/pjax"></script>
+</head>
+
+<body>
+
+  <div class="styles">
+    <link href="https://unpkg.com/codemirror@5.19.0/lib/codemirror.css" rel="stylesheet">
+    <link href="https://unpkg.com/codemirror@5.19.0/theme/monokai.css" rel="stylesheet">
+    <link href="https://unpkg.com/codemirror@5.19.0/addon/hint/show-hint.css" rel="stylesheet">
+    <link rel="stylesheet" href="ace.css" media="screen" title="no title">
+  </div>
+
+  <div class="chrome-tabs-shell chrome-tabs-dark-theme">
+    <div class="chrome-tabs">
+
+      <div class="chrome-tab chrome-tab-current">
+        <div class="chrome-tab-background">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <symbol id="topleft" viewBox="0 0 214 29" >
+                <path d="M14.3 0.1L214 0.1 214 29 0 29C0 29 12.2 2.6 13.2 1.1 14.3-0.4 14.3 0.1 14.3 0.1Z"/>
+              </symbol>
+              <symbol id="topright" viewBox="0 0 214 29">
+                <use xlink:href="#topleft"/>
+              </symbol>
+              <clipPath id="crop">
+                <rect class="mask" width="100%" height="100%" x="0"/>
+              </clipPath>
+            </defs>
+            <svg width="50%" height="100%" transfrom="scale(-1, 1)">
+              <use xlink:href="#topleft" width="214" height="29" class="chrome-tab-background"/>
+              <use xlink:href="#topleft" width="214" height="29" class="chrome-tab-shadow"/>
+            </svg>
+            <g transform="scale(-1, 1)">
+              <svg width="50%" height="100%" x="-100%" y="0">
+                <use xlink:href="#topright" width="214" height="29" class="chrome-tab-background"/>
+                <use xlink:href="#topright" width="214" height="29" class="chrome-tab-shadow"/>
+              </svg>
+            </g>
+          </svg>
+        </div>
+        <div class="chrome-tab-favicon" style="background-image: url('favicon.ico')"></div>
+        <div class="chrome-tab-title">Main</div>
+        <div class="chrome-tab-close"></div>
+      </div>
+
+    </div>
+    <div class="chrome-shell-bottom-bar"></div>
+  </div>
+
+  <div class="markup">
+    <div class="grid">
+
+      <div class="code-panel code-panel-1">
+        <div class="code-panel-dragbar"></div>
+        <div class="code-panel-editor">
+          <header class="title-bar">
+            <div>
+              <bold> HTML </bold>
+            </div>
+          </header>
+          <textarea class="editor"  data-mode="html" id="html-editor"> </textarea>
+        </div>
+      </div>
+
+      <div class="code-panel code-panel-2">
+        <div class="code-panel-dragbar"></div>
+        <div class="code-panel-editor">
+          <header class="title-bar">
+            <div>
+              <bold> CSS </bold>
+            </div>
+          </header>
+          <textarea class="editor"  data-mode="css" id="css-editor"> </textarea>
+        </div>
+      </div>
+
+      <div class="code-panel code-panel-3">
+        <div class="code-panel-dragbar"></div>
+        <div class="code-panel-editor">
+          <header class="title-bar">
+            <div>
+              <bold> JS </bold>
+            </div>
+          </header>
+          <textarea class="editor"  data-mode="javascript" id="javascript-editor"> </textarea>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="preview">
+      <iframe src="" width="" height="" id="preview-panel"></iframe>
+    </div>
+
+  </div>
+
+  <script src="tabs.js"></script>
+  <script>
+  var $chromeTabsExampleShell = $('.chrome-tabs-shell')
+  chromeTabs.init({
+    $shell: $chromeTabsExampleShell,
+    minWidth: 45,
+    maxWidth: 242.5
+  });
+  // chromeTabs.addNewTab($chromeTabsExampleShell, {
+  //   favicon: 'favicon.ico',
+  //   title: 'Footer',
+  //   data: {
+  //     timeAdded: +new Date()
+  //   }
+  // });
+  $chromeTabsExampleShell.bind('chromeTabRender', function(){
+    var $currentTab = $chromeTabsExampleShell.find('.chrome-tab-current');
+    if ($currentTab.length && window['console'] && console.log) {
+      console.log('Current tab index', $currentTab.index(), 'title', $.trim($currentTab.text()), 'data', $currentTab.data('tabData').data);
+    }
+  });
+  </script>
+
+  <script type="text/javascript">
+    /* global Pjax */
+    console.log("Document initialized:", window.location.href)
+
+    document.addEventListener("pjax:send", function(e) {
+      console.log("Event: pjax:send", arguments)
+    })
+
+    document.addEventListener("pjax:complete", function() {
+      console.log("Event: pjax:complete", arguments)
+    })
+
+    document.addEventListener("pjax:error", function() {
+      console.log("Event: pjax:error", arguments)
+    })
+
+    document.addEventListener("pjax:success", function() {
+      console.log("Event: pjax:success", arguments)
+    })
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var jax = new pjax({ selectors: ["title", ".styles"]  })
+      console.log("Pjax initialized.", jax)
+    })
+  </script>
+
+  <div class="scripts">
+    <script src="https://unpkg.com/codemirror@5.19.0/lib/codemirror.js"></script>
+
+    <script src="https://unpkg.com/codemirror@5.19.0/addon/hint/show-hint.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/addon/hint/xml-hint.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/addon/hint/html-hint.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/addon/hint/javascript-hint.js"></script>
+
+    <script src="https://unpkg.com/codemirror@5.19.0/mode/xml/xml.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/mode/css/css.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/mode/markdown/markdown.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/mode/javascript/javascript.js"></script>
+    <script src="https://unpkg.com/codemirror@5.19.0/mode/htmlmixed/htmlmixed.js"></script>
+
+    <script src='https://wzrd.in/standalone/global-cache' charset="utf-8"></script>
+    <script src='https://unpkg.com/ua-parser-js@0.7.10' charset="utf-8"></script>
+    <script src='https://wzrd.in/standalone/postcss' charset="utf-8"></script>
+    <script src='https://wzrd.in/standalone/lost' charset="utf-8"></script>
+
+    <script src='https://unpkg.com/browserfs@0.6.1/dist/browserfs.js' charset="utf-8"></script>
+    <script type="text/javascript">
+      BrowserFS.install(window);
+      // Constructs an instance of the LocalStorage-backed file system.
+      var lsfs = new BrowserFS.FileSystem.LocalStorage();
+      // Initialize it as the root file system.
+      BrowserFS.initialize(lsfs);
+      // Attaches global reference onto window
+      window.fs = BrowserFS;
+
+      // var fs = require('fs')
+      // fs.closeSync(fs.openSync('main.js', 'w'));
+      // fs.closeSync(fs.openSync('main.css', 'w'));
+      // fs.closeSync(fs.openSync('main.html', 'w'));
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js' charset="utf-8"></script>
+
+    <script src="vendor.js" charset="utf-8"></script>
+    <script src="layout.js" charset="utf-8"></script>
+    <script src="core.js" charset="utf-8"></script>
+    <script src="ide.js" charset="utf-8"></script>
+
+  </div>
+
+</body>
+</html>

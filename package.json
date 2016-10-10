@@ -1,7 +1,7 @@
 {
-  "name": "rollup-starter-project",
+  "name": "nodepen",
   "version": "1.0.0",
-  "description": "Sample project for packages built with rollup.",
+  "description": "live web dev env",
   "main": "dist/rollup-starter-project.js",
   "module": "dist/rollup-starter-project.mjs",
   "jsnext:main": "dist/rollup-starter-project.mjs",
@@ -11,29 +11,30 @@
     "watch": "rollup -c -w",
     "pretest": "npm run build",
     "test": "mocha",
-    "prepublish": "npm test"
+    "prepublish": "npm test",
+    "preview": "http-server -o"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rollup/rollup-starter-project.git"
+    "url": "git+https://github.com/kharhys/nodepen.git"
   },
   "keywords": [
     "es6",
     "modules",
     "rollup",
-    "bundle",
+    "babel",
     "browser"
   ],
-  "author": "Brian Donovan",
+  "author": "Kelvin Kharhys",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rollup/rollup-starter-project/issues"
+    "url": "https://github.com/kharhys/nodepen/issues"
   },
   "files": [
     "lib",
     "dist"
   ],
-  "homepage": "https://github.com/rollup/rollup-starter-project#readme",
+  "homepage": "https://github.com/kharhys/nodepen#readme",
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^6.1.2",
@@ -42,6 +43,7 @@
     "babel-register": "^6.11.6",
     "babelrc-rollup": "^3.0.0",
     "eslint": "^3.2.2",
+    "http-server": "^0.9.0",
     "istanbul": "^0.4.4",
     "mocha": "^3.0.2",
     "rollup": "^0.34.7",
