@@ -1,5 +1,24 @@
 'use strict';
 
+// Function to download data to a file
+function download(data, filename, type) {
+    var a = document.createElement("a")
+    var file = new Blob([data], {type: type})
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+    }
+}
+
 
 // deBouncer by hnldesign.nl
 // based on code by Paul Irish and the original debouncing function from John Hann
@@ -21,18 +40,25 @@ var debounce = function (func, threshold, execAsap) {
     };
 };
 
-
-function render(markup, stylesheet, script) {
+function bundle(markup, stylesheet, script) {
+  var inline_style = "::-webkit-scrollbar { width: 5px; height: 5px; background: rgba(255, 255, 255, 0.1); } " +
+    " ::-webkit-scrollbar-thumb { background: rgba(74, 168, 0, 0.6); } ::-webkit-scrollbar-track { background: none; } "
   var doc = function doc(markup, stylesheet, script) {
     return "\n  <!doctype html>\n  " + markup + "\n  <style> "
-      + stylesheet + " </style>\n  <script> " + script + " </script>\n";
+      + inline_style + stylesheet + " </style>\n  <script> " + script + " </script>\n";
   };
   var page = doc(markup, stylesheet, script)
   var blob = new Blob([page], {type: "text/html"});
   var blob_url = URL.createObjectURL(blob);
-  var blob_iframe = document.querySelector('#preview-panel');
+  return blob_url
+}
 
-  blob_iframe.src = blob_url;
+
+function render(markup, stylesheet, script) {
+  var blob_url = bundle(markup, stylesheet, script)
+  var blob_iframe = document.querySelector('#preview-panel')
+
+  blob_iframe.src = blob_url
 }
 
 function cache(filename, content) {

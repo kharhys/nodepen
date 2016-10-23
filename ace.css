@@ -1,3 +1,76 @@
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(74, 168, 0, 0.6);
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+.CodeMirror-hscrollbar {
+  bottom: 3px;
+}
+
+.CodeMirror-vscrollbar {
+  right: 12px;
+}
+
+
+.ide_toolbar ul {
+  display: flex;
+}
+
+.ide_toolbar ul li {
+  padding: 0 1.2rem;
+  -webkit-transition: all .7s linear;
+  -moz-transition: all .7s linear;
+  -ms-transition: all .7s linear;
+  -o-transition: all .7s linear;
+  transition: all .7s linear;
+}
+
+.ide_toolbar ul li:hover {
+  color: #ff6200;
+  font-size: bold;
+}
+
+.ide_toolbar .ion {
+  font-size: 1.2rem;
+}
+
+.ide_toolbar #publish_to_surge {
+  background: url('surge-logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ide_toolbar {
+  background: linear-gradient(#1b1d1f, #1d1f21);
+  border-top: 1px solid #666;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.ide_toolbar ul {
+  padding: 0.5rem;
+  font-size: 0.4rem;
+  margin: 0;
+}
+
+.ide_toolbar ul li {
+  cursor: pointer;
+}
+
+ul li {
+  list-style-type: none;
+}
+
 .CodeMirror-hscrollbar {
   left: 5px !important;
   right: 15px !important;
@@ -6,7 +79,7 @@
 #preview-panel iframe body {
   animation: fade-in 1.5s 1s ease-in;
 }
-
+/*
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #505050;
@@ -22,7 +95,7 @@
 	border-radius: 15px;
 	background-image:
     -webkit-linear-gradient(90deg, rgba(0, 0, 0, .2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, .2) 50%, rgba(0, 0, 0, .2) 75%, transparent 75%, transparent)
-}
+}*/
 
 
 .markup {
@@ -62,7 +135,6 @@
   height: 100%;
   margin: 0 auto;
   background: #fff;
-  border: 1px solid #505050;
 }
 
 .code-panel-2 .code-panel-dragbar {

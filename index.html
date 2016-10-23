@@ -15,15 +15,21 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+  <script src="https://rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
+  <script src="https://rawgit.com/Stuk/jszip/master/dist/jszip.js"></script>
+  <script src="https://rawgit.com/ccampbell/gator/master/gator.js"></script>
   <script src="https://wzrd.in/standalone/pjax"></script>
 </head>
 
 <body>
 
   <div class="styles">
-    <link href="https://unpkg.com/codemirror@5.19.0/lib/codemirror.css" rel="stylesheet">
-    <link href="https://unpkg.com/codemirror@5.19.0/theme/monokai.css" rel="stylesheet">
-    <link href="https://unpkg.com/codemirror@5.19.0/addon/hint/show-hint.css" rel="stylesheet">
+
+    <link href="https://rawgit.com/saeedalipoor/icono/master/dist/icono.min.css" rel="stylesheet">
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/codemirror.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/theme/monokai.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/addon/hint/show-hint.css" rel="stylesheet">
     <link rel="stylesheet" href="ace.css" media="screen" title="no title">
   </div>
 
@@ -108,9 +114,25 @@
 
 
     <div class="preview">
+      <!-- <header class="title-bar">
+        <div>
+          <bold> Preview </bold>
+        </div>
+      </header> -->
       <iframe src="" width="" height="" id="preview-panel"></iframe>
     </div>
 
+  </div>
+
+  <div class="ide_toolbar">
+    <ul>
+      <li id="download_icon"> <i class="ion ion-ios-cloud-download-outline"></i> </li>
+      <li id="preview_icon"><i class="ion ion-ios-photos-outline"></i></li>
+      <li id="upload_icon"><i class="ion ion-ios-cloud-upload-outline"></i></li>
+      <li id="share_on_codepen"><i class="ion ion-social-codepen-outline"></i></li>
+      <li id="commit_to_github"><i class="ion ion-social-github-outline"></i></li>
+      <li id="publish_to_surge"> </li>
+    </ul>
   </div>
 
   <script src="tabs.js"></script>
